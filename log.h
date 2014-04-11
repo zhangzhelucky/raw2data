@@ -15,14 +15,13 @@
 #include <fstream>
 
 
-
-
 class CLog
 {
  public:
+    CLog();
     CLog( string , bool );
-
     virtual ~CLog();
+
  private:
     string getTimeStr();
     bool isDisplay;
@@ -30,13 +29,9 @@ class CLog
  private:
     ofstream fp;
     string logStr;
-
- public:
-    static string fileStr;
     
 };
-  
-string CLog::fileStr;
+
   
 #endif /* _LOG_H_ */
 

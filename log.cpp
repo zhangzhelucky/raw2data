@@ -17,15 +17,25 @@
 using namespace std;
 
 #include "log.h"
+#include "global.h"
 
 
-CLog::CLog( string str , bool isdis = true )
+CLog::CLog()
 {
-    logStr = str;
-    fp.open( fileStr.c_str() , ios::app );
+    isDisplay = false;
+    logStr = "----------------------------------------";
+    fp.open( _LOG_FILE , ios::app );
     assert( fp );
 
+}
+
+CLog::CLog( string str , bool isdis )
+{
     isDisplay = isdis;
+    logStr = str;
+    fp.open( _LOG_FILE , ios::app );
+    assert( fp );
+
 }
 
 
@@ -39,18 +49,19 @@ string CLog::getTimeStr()
     return std::string(str);
 }
 
+
 CLog::~CLog()
 {
     string timeStr = getTimeStr();
 
-    fp << timeStr ;
-    fp << logStr <<endl;
+    fp << timeStr << logStr <<endl;
     fp.close();
 
     if( isDisplay)
     {
 	cout << timeStr << logStr << endl;
     }
+
 }
 
 

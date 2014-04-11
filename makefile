@@ -10,11 +10,11 @@
 #****************************************************/
 
 FLAGS		:=	-O -Wall -g  -DNDEBUG
-OBJECTS		:=	raw2data.o log.o
+OBJECTS		:=	log.o raw2data.o
 
 raw2data:	$(OBJECTS)
 		g++ -o raw2data $(OBJECTS) $(FLAGS)
-		mkdir ./log/
+#		 -mkdir ./log/
 		rm -rf *~
 		@echo "Done"
 
@@ -25,9 +25,9 @@ log.o:		log.cpp log.h
 		g++ -c -g log.cpp
 
 
-# .PHONY:clean
-# clean:
-# 	rm -fr daq $(OBJECTS) *.gch
+.PHONY:clean
+clean:
+		rm -fr raw2data $(OBJECTS) *.gch
 
 # run:
 # 	./daq
