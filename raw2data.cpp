@@ -5,7 +5,7 @@
 # Update History:
 #
 # 2014-04-08	Start this file
-#
+# 2014-04-10	Added File scaning and sorting modul
 #
 #****************************************************/
 
@@ -22,7 +22,7 @@ using namespace std;
 
 #include "log.h"
 #include "global.h"
-
+//#include "raw2data.h"
 
 int scanDir( vector<string>* );		// Scan current directory for data files
 
@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
     // {
     // 	cout << file_names[i] << '\t';
     // }
+
+
 
 
 
