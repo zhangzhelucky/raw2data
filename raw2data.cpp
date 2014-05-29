@@ -66,14 +66,6 @@ int main(int argc, char *argv[])
 
 
 
-
-
-
-
-
-
-
-
     CLog();
     return 0;
 }

@@ -1,3 +1,4 @@
+
 #/***************************************************
 # File Name:	moduls.cpp
 # Abstract:
@@ -11,30 +12,44 @@
 
 #include "moduls.h"
 #include <iostream>
-using namespace std;
+  using namespace std;
 
 CModul::CModul( vector<int>* data)
 {
     mRawData = data;
+    Decode();
+
 }
 
-virtual bool CModul::Decode()
+
+bool CModul::Decode()
+{
+    if( false == getHeader() )
+    {
+	// Get header error
+	return false;
+    }
+
+    if( false == getData() )
+    {
+	// Get data error
+	return false;
+    }
+
+    return true;
+}
+
+
+bool CModul::getHeader()
 {
     tempData = mRawData->at( 0 );
-    
-}
+    mRawData->erase( mRawData->begin() );
 
-virtual unsigned short CModul::checkMark()
-{
-    return ( (tempData & DataMarkMask ) >> DataMarkR );
-}
+    mChlNum = (tempData & ChlNumMask ) >> ChlNumR; // Get Channel Num
+    mGeo = (tempData & GeoMask ) >> GeoR;	   // Get Geo
 
-
-virtual bool CModul::getHeader()
-{
-    mChlNum = (tempData & ChlNumMask ) >> ChlNumR;
-
-    if( 1 != ((tempData & CrateMask ) >> CrateR) )
+    // On crate No.1
+    if( 0x01 != ((tempData & CrateMask ) >> CrateR) )
     {
 	return false;
     }
@@ -43,32 +58,55 @@ virtual bool CModul::getHeader()
 }
 
 
-virtual bool CModul::getData()
+bool CMv792::getData()
 {
-    if( 0 != ( temp & isUnderThrsMask )  )
+    short chl;
+    for (int i = 0; i < mChlNum; i++) 
     {
-	return false;
-    }
-    else if( 0 != ( temp & isOverflewMask )  )
-    {
-	return false;
-    }
-    else
-    {
+	tempData = mRawData->at( 0 );
+	mRawData->erase( mRawData->begin() );
+
+	chl = ( tempData & ChlMask32 ) >> ChlR32 ;
 	
-    }    
-    
+	
+
+    }
+
+
 
 
 
 }
 
 
+bool CModul::getData()
+{
+
+    // if( 0 != ( tempData & isUnderThrsMask )  )
+    // {
+    // 	return false;
+    // }
+    // else if( 0 != ( tempData & isOverflewMask )  )
+    // {
+    // 	return false;
+    // }
+    // else
+    // {
+	
+    // }    
 
 
-
-
-
+}
 
   
+// unsigned short CModul::checkMark()
+// {
+//     return ( (tempData & DataMarkMask ) >> DataMarkR );
+
+// }
+
+
+
+
+
 
