@@ -40,6 +40,8 @@
 #define ChlMask32		0x001f0000
 #define ChlR32			16
 
+#define DataMask		0x00000fff
+
 #define isUnderThrsMask		0x00001000
 #define isOverflewMask		0x00002000
 #define isDataValidMask		0x00004000		
@@ -48,24 +50,28 @@
 class CModul
 {
  public:
-    CModul( vector<int>* );
+    CModul( int* , vector<int>::iterator* );
     virtual ~CModul();
 
  public:
-    vector<int>* mRawData;
-    CEvent* event;
+    //    vector<int>* mRawData;
+    //    CEvent* event;
+
     int tempData;
     unsigned short mChlNum;
     unsigned short mGeo;
+
+    (vector<int>::iterator)* pRawData;
+    int* pData;
 
     //    unsigned short mCrate;
     //    const unsigned short mMaxChlNum;
 
  private:
-    virtual bool Decode();
-
-    virtual bool getHeader();
     virtual bool getData();
+
+    virtual bool Decode();
+    virtual bool getHeader();
 
     //    virtual bool checkGeo();
     //    virtual bool checkCrate();
@@ -77,54 +83,58 @@ class CModul
 };
 
 
-
 class CMv830ac : public CModul
 {
  public:
-    CMv830ac( vector<int>* );
+    CMv830ac( int* , vector<int>::iterator* );
     virtual ~CMv830ac();
 
     virtual bool getData();
+
 };
 
 
 class CMv792 : public CModul
 {
  public:
-    CMv792( vector<int>* );
+    CMv792( int* , vector<int>::iterator* );
     virtual ~CMv792();
 
     virtual bool getData();
+
 };
 
 
 class CMv785 : public CModul
 {
  public:
-    CMv785( vector<int>* );
+    CMv785( int* , vector<int>::iterator* );
     virtual ~CMv785();
 
     virtual bool getData();
+
 };
 
 
-class CMv785N : public CMv785
+class CMv785N : public CModul
 {
  public:
-    CMv785N( vector<int>* );
+    CMv785N( int* , vector<int>::iterator* );
     virtual ~CMv785N();
 
     virtual bool getData();
+
 };
 
 
 class CMv775N : public CModul
 {
  public:
-    CMv775N( vector<int>* );
+    CMv775N( int* , vector<int>::iterator* );
     virtual ~CMv775N();
 
     virtual bool getData();
+
 };
   
   

@@ -22,7 +22,6 @@ using namespace std;
 
 struct sEventDataRegister
 {
-
     short v830ac_3[32];
     short v785n_4[16];
     short v775n_5[16];
@@ -52,7 +51,9 @@ class CEvent
  public:
     static unsigned int EC;	// Enent Counter (EC)
     sEData data;	// for event data output
+
     vector<int> RawData;
+    vector<int>::iterator iter;
     
  private:
     fstream* pDataFile;
@@ -63,9 +64,6 @@ class CEvent
 
  public:
     bool Decode();
-    
-
-
 
 
 };
