@@ -39,20 +39,20 @@ struct sEventDataRegister
 
 };
 
-typedef	sEventDataRegister sEData
+typedef sEventDataRegister sEData;
 
 
 class CEvent
 {
  public:
     CEvent( fstream* );
-    virtual ~CEvent();
+    virtual ~CEvent(){};
 
  public:
     static unsigned int EC;	// Enent Counter (EC)
     sEData DataReg;	// for event data output
 
-    //    vector<int> RawData;	
+    vector<int> RawData;	
 
     vector<int>::iterator iter;
     

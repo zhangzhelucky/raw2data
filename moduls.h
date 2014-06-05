@@ -50,8 +50,8 @@
 class CModul
 {
  public:
-    CModul( int* , vector<int>::iterator* );
-    virtual ~CModul();
+    CModul( short* , vector<int>::iterator* );
+    virtual ~CModul(){};
 
  public:
     //    vector<int>* mRawData;
@@ -61,8 +61,8 @@ class CModul
     unsigned short mChlNum;
     unsigned short mGeo;
 
-    (vector<int>::iterator)* pRawData;
-    int* pData;
+    vector<int>::iterator* pRawData;
+    short* pData;
 
     //    unsigned short mCrate;
     //    const unsigned short mMaxChlNum;
@@ -79,15 +79,14 @@ class CModul
     //    virtual unsigned short getChl();
     //    virtual bool getEnd();
 
-
 };
 
 
 class CMv830ac : public CModul
 {
  public:
-    CMv830ac( int* , vector<int>::iterator* );
-    virtual ~CMv830ac();
+    CMv830ac( short* , vector<int>::iterator* );
+    virtual ~CMv830ac(){};
 
     virtual bool getData();
 
@@ -97,10 +96,10 @@ class CMv830ac : public CModul
 class CMv792 : public CModul
 {
  public:
-    CMv792( int* , vector<int>::iterator* );
-    virtual ~CMv792();
+    CMv792( short* , vector<int>::iterator* );
+    virtual ~CMv792(){};
 
-    virtual bool getData();
+    //    virtual bool getData();
 
 };
 
@@ -108,10 +107,10 @@ class CMv792 : public CModul
 class CMv785 : public CModul
 {
  public:
-    CMv785( int* , vector<int>::iterator* );
-    virtual ~CMv785();
+    CMv785( short* , vector<int>::iterator* );
+    virtual ~CMv785(){};
 
-    virtual bool getData();
+    //    virtual bool getData();
 
 };
 
@@ -119,10 +118,10 @@ class CMv785 : public CModul
 class CMv785N : public CModul
 {
  public:
-    CMv785N( int* , vector<int>::iterator* );
-    virtual ~CMv785N();
+    CMv785N( short* , vector<int>::iterator* );
+    virtual ~CMv785N(){};
 
-    virtual bool getData();
+    //    virtual bool getData();
 
 };
 
@@ -130,10 +129,10 @@ class CMv785N : public CModul
 class CMv775N : public CModul
 {
  public:
-    CMv775N( int* , vector<int>::iterator* );
-    virtual ~CMv775N();
+    CMv775N( short* , vector<int>::iterator* );
+    virtual ~CMv775N(){};
 
-    virtual bool getData();
+    //    virtual bool getData();
 
 };
   

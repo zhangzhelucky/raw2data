@@ -15,6 +15,7 @@
 #include <dirent.h>
 #include <vector>
 #include <string>
+#include <fstream>
 #include <iostream>
 #include "algorithm"
 
@@ -22,17 +23,20 @@
 
 #include "log.h"
 #include "global.h"
+#include "event.h"
+
 //#include "raw2data.h"
 
 int scanDir( vector<string>* );		// Scan current directory for data files
 
+unsigned int CEvent::EC;
 
 int main(int argc, char *argv[])
 {
     cout << "zhangzhelucky" << endl;
     CLog();
 
-    CEvent::EC = -1;
+    //    CEvent::EC = -1;
 
     // Scan current directory ----------
 
@@ -67,10 +71,10 @@ int main(int argc, char *argv[])
     // Print all files found ----------
 
     /*
-      for (int i = 0; i < file_names.size() ; i++) 
-      {
-      cout << file_names[i] << '\t';
-      }
+    for (int i = 0; i < file_names.size() ; i++) 
+    {
+	cout << file_names[i] << '\t';
+    }
     */
 
 
@@ -82,12 +86,13 @@ int main(int argc, char *argv[])
 	     << "----Preparing for decoding file: " << file_names[i] << endl;
 
 
-	fstream datafile( file_names[i] , ios::in | ios::binary );
+	fstream datafile( file_names[i].c_str() , ios::in | ios::binary ); 
 
 
 	// Get file header and the comments ---
 	char comment[1024];
-	datafile.get(name,1024);
+	datafile.get( comment , 1024 );
+
 	cout << "---File Comments: " << comment  << endl;
 
 	datafile.seekg(1024 + 4,ios::beg);	// Skip the header and the first
@@ -100,11 +105,9 @@ int main(int argc, char *argv[])
 	{
 	    CEvent event( &datafile );
 	    isFileEnd = event.loadEvent();
-
 	}
 
     }
-
 
     CLog();
     return 0;

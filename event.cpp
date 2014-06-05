@@ -9,15 +9,16 @@
 #
 #****************************************************/
 
-#include <event.h>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 #include "moduls.h"
+#include "event.h"
 
 
-inline int geti32(fstream *pf);
+inline int geti32( fstream *pf );
 
 CEvent::CEvent( fstream* pf )
 {
@@ -103,39 +104,39 @@ bool CEvent::Decode()
 	    switch( geo )
 	    {
 	      case 4 :
-		modul = new CMv785N( &(DataReg.v785n_4) , & iter );
+		modul = new CMv785N( DataReg.v785n_4 , & iter );
 		break;
 
 	      case 5 : 
-		modul = new CMv785N( &(DataReg.v775n_5) , & iter );
+		modul = new CMv785N( DataReg.v775n_5 , & iter );
 		break;
 
 	      case 7 : 
-		modul = new CMv785N( &(DataReg.v775n_7) , & iter );
+		modul = new CMv785N( DataReg.v775n_7 , & iter );
 		break;
 
 	      case 8 : 
-		modul = new CMv785N( &(DataReg.v775n_8) , & iter );
+		modul = new CMv785N( DataReg.v775n_8 , & iter );
 		break;
 
 	      case 10 : 
-		modul = new CMv785N( &(DataReg.v785_10) , & iter );
+		modul = new CMv785N( DataReg.v785_10 , & iter );
 		break;
 
 	      case 12 : 
-		modul = new CMv785N( &(DataReg.v792_12) , & iter );
+		modul = new CMv785N( DataReg.v792_12 , & iter );
 		break;
 
 	      case 13 : 
-		modul = new CMv785N( &(DataReg.v792_13) , & iter );
+		modul = new CMv785N( DataReg.v792_13 , & iter );
 		break;
 
 	      case 15 : 
-		modul = new CMv785N( &(DataReg.v792_15) , & iter );
+		modul = new CMv785N( DataReg.v792_15 , & iter );
 		break;
 
 	      case 16 : 
-		modul = new CMv785N( &(DataReg.v792_16) , & iter );
+		modul = new CMv785N( DataReg.v792_16 , & iter );
 		break;
 
 	    }

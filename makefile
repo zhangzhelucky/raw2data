@@ -10,7 +10,7 @@
 #****************************************************/
 
 FLAGS		:=	-O -Wall -g  -DNDEBUG
-OBJECTS		:=	log.o  raw2data.o moduls.o
+OBJECTS		:=	log.o  raw2data.o moduls.o event.o
 
 raw2data:	$(OBJECTS)
 		g++ -o raw2data $(OBJECTS) $(FLAGS)
@@ -24,8 +24,12 @@ raw2data.o:	raw2data.cpp
 log.o:		log.cpp log.h
 		g++ -c -g log.cpp
 
+event.o:	event.cpp event.h
+		g++ -c -g event.cpp
+
 moduls.o:	moduls.cpp moduls.h
 		g++ -c -g moduls.cpp
+
 
 
 .PHONY:clean

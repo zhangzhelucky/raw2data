@@ -66,7 +66,7 @@ bool CModul::getHeader()
     // tempData = mRawData->at( 0 );
     // mRawData->erase( mRawData->begin() );
 
-    tempData = *( (*piter)++ );
+    tempData = *( (* pRawData )++ );
 
     mChlNum = (tempData & ChlNumMask ) >> ChlNumR; // Get Channel Num
     mGeo = (tempData & GeoMask ) >> GeoR;	   // Get Geo
@@ -91,7 +91,7 @@ bool CModul::getData()
 
     while ( 1 ) 
     {
-	tempData = *( (*piter)++ );
+	tempData = *( (* pRawData )++ );
 
 	mark = ( tempData & DataMarkMask ) >> DataMarkR ;
 	chl =  ( tempData & ChlMask32 ) >> ChlR32 ;
