@@ -50,21 +50,20 @@ class CEvent
 
  public:
     static unsigned int EC;	// Enent Counter (EC)
-    sEData data;	// for event data output
+    sEData DataReg;	// for event data output
 
-    vector<int> RawData;
+    //    vector<int> RawData;	
+
     vector<int>::iterator iter;
     
  private:
     fstream* pDataFile;
 
- private:
-    fstream* loadEvent();
-    bool getEventHeader();
-
  public:
-    bool Decode();
+    bool loadEvent();
 
+    bool getEventHeader();
+    bool Decode();
 
 };
 

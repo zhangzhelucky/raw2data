@@ -18,7 +18,7 @@
 #include <iostream>
 #include "algorithm"
 
-using namespace std;
+  using namespace std;
 
 #include "log.h"
 #include "global.h"
@@ -26,14 +26,18 @@ using namespace std;
 
 int scanDir( vector<string>* );		// Scan current directory for data files
 
+
 int main(int argc, char *argv[])
 {
     cout << "zhangzhelucky" << endl;
     CLog();
 
+    CEvent::EC = -1;
 
-    // Scan current directory-----------------------------
+    // Scan current directory ----------
+
     vector<string> file_names;
+
     int fileNum = scanDir( & file_names );
 
     if( _MAX_FILE_NUM <= fileNum )
@@ -59,11 +63,47 @@ int main(int argc, char *argv[])
 
     } while (1);
 
-    // for (int i = 0; i < file_names.size() ; i++) 
-    // {
-    // 	cout << file_names[i] << '\t';
-    // }
 
+    // Print all files found ----------
+
+    /*
+      for (int i = 0; i < file_names.size() ; i++) 
+      {
+      cout << file_names[i] << '\t';
+      }
+    */
+
+
+    // Open file for Decoding ----------
+
+    for (int i = 0; i < file_names.size() ; i++) 
+    {
+    	cout << endl 
+	     << "----Preparing for decoding file: " << file_names[i] << endl;
+
+
+	fstream datafile( file_names[i] , ios::in | ios::binary );
+
+
+	// Get file header and the comments ---
+	char comment[1024];
+	datafile.get(name,1024);
+	cout << "---File Comments: " << comment  << endl;
+
+	datafile.seekg(1024 + 4,ios::beg);	// Skip the header and the first
+						// event separator(4 byte)
+
+
+	bool isFileEnd = false;
+
+	while( true != isFileEnd )
+	{
+	    CEvent event( &datafile );
+	    isFileEnd = event.loadEvent();
+
+	}
+
+    }
 
 
     CLog();
@@ -98,9 +138,6 @@ int scanDir(vector<string>* file_names)
 
     return file_counter;
 }
-
-
-
 
 
 

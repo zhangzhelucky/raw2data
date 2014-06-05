@@ -12,9 +12,11 @@
 
 #include "moduls.h"
 #include <iostream>
-  using namespace std;
 
-CModul::CModul( int* pdata , vector<int>::iterator* piter )
+using namespace std;
+
+
+CModul::CModul( short* pdata , vector<int>::iterator* piter )
 {
     pData = pdata;
     pRawData = piter;
@@ -29,31 +31,31 @@ CModul::CModul( int* pdata , vector<int>::iterator* piter )
 // }
 
 
-CMv830ac::CMv830ac( int* pdata , vector<int>::iterator* piter )
+CMv830ac::CMv830ac( short* pdata , vector<int>::iterator* piter )
     : CModul( pdata , piter )
 {
 }
 
 
-CMv792::CMv792( int* pdata , vector<int>::iterator* piter )
+CMv792::CMv792( short* pdata , vector<int>::iterator* piter )
     : CModul( pdata , piter )
 {
 }
 
 
-CMv785::CMv785( int* pdata , vector<int>::iterator* piter )
+CMv785::CMv785( short* pdata , vector<int>::iterator* piter )
     : CModul( pdata , piter )
 {
 }
 
 
-CMv785N::CMv785N( int* pdata , vector<int>::iterator* piter )
+CMv785N::CMv785N( short* pdata , vector<int>::iterator* piter )
     : CModul( pdata , piter )
 {
 }
 
 
-CMv775N::CMv775N( int* pdata , vector<int>::iterator* piter )
+CMv775N::CMv775N( short* pdata , vector<int>::iterator* piter )
     : CModul( pdata , piter )
 {
 }
@@ -84,7 +86,7 @@ bool CModul::getHeader()
 bool CModul::getData()
 {
     short chl;
-    int data;
+    short data;
     short mark;
 
     while ( 1 ) 
